@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user</title>
+</head>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+</style>
+<body>
+
+<h2 style="color:darkslateblue">Данные Пользователя</h2>
+
+<table>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Возраст</th>
+    <th>E-mail</th>
+    <th>Пароль</th>
+  </tr>
+  <tr>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.surname}"></td>
+    <td th:text="${user.age}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.password}"></td>
+  </tr>
+</table>
+<br>
+
+<div>
+  <form action="/logout" method="post">
+    <input type="submit" value="Выйти">
+  </form>
+</div>
+
+</body>
+</html>
