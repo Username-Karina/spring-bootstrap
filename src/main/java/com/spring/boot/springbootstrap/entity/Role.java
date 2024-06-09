@@ -1,4 +1,4 @@
-package com.spring.boot.springbootsecurity.entity;
+package com.spring.boot.springbootstrap.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 

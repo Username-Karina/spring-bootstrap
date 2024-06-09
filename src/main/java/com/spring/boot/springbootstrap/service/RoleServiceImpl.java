@@ -1,7 +1,7 @@
-package com.spring.boot.springbootsecurity.service;
+package com.spring.boot.springbootstrap.service;
 
-import com.spring.boot.springbootsecurity.entity.Role;
-import com.spring.boot.springbootsecurity.reposotory.RoleRepository;
+import com.spring.boot.springbootstrap.entity.Role;
+import com.spring.boot.springbootstrap.reposotory.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +20,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> allRoles() {
         return repository.findAll();
+    }
+    @Override
+    public void saveRole(Role role) {
+        repository.save(role);
+    }
+
+    @Override
+    public Role findRoleById(int id) {
+        return repository.getById(id);
     }
 }

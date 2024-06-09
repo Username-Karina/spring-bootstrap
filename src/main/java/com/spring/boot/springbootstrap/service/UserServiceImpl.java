@@ -1,11 +1,11 @@
-package com.spring.boot.springbootsecurity.service;
+package com.spring.boot.springbootstrap.service;
 
-import com.spring.boot.springbootsecurity.entity.User;
-import com.spring.boot.springbootsecurity.reposotory.UserRepository;
+import com.spring.boot.springbootstrap.entity.User;
+import com.spring.boot.springbootstrap.reposotory.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +14,15 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void add(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -51,6 +54,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void edit(User user) {
+        String oldPassword = get(user.getId()).getPassword();
+        String newPassword = user.getPassword();
+        if(!oldPassword.equals(newPassword)) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.save(user);
     }
 

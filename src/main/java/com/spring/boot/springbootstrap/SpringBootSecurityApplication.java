@@ -1,4 +1,4 @@
-package com.spring.boot.springbootsecurity;
+package com.spring.boot.springbootstrap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,6 +1,6 @@
-package com.spring.boot.springbootsecurity.reposotory;
+package com.spring.boot.springbootstrap.reposotory;
 
-import com.spring.boot.springbootsecurity.entity.User;
+import com.spring.boot.springbootstrap.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
